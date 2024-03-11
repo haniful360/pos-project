@@ -2,7 +2,16 @@
 
 @section('main_content')
 
-    <h3>User Groups</h3>
+
+
+    <div class="row clearfix mb-4">
+        <div class="col-md-6">
+            <h3>User Groups</h3>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="{{ asset(url('groups/create')) }}" class="btn btn-primary"> <i class="fa fa-plus mr-2"></i>New Group</a>
+        </div>
+    </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -11,7 +20,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                {{ $groups }}
+                {{-- {{ $groups }} --}}
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -33,10 +42,14 @@
                             <tr>
                                 <td>{{ $group->id }}</td>
                                 <td>{{ $group->title }}</td>
-                                <td>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                <td class="text-right">
+                                    <form method="POST" action=" {{ url('groups/' . $group->id) }} ">
+                                        @csrf
+                                        @method('DELETE')  
+                                        <button onclick="return confirm('Are you sure?')" type="submit"
+                                            class="btn btn-danger"> <i class="fa fa-trash"></i> Delete </button>
+                                    </form>
                                 </td>
-
                             </tr>
                         @endforeach
                     </tbody>

@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUserRequest;
-use App\Models\Group;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-     public function index(){
-
-        $this->data['users'] = User::all();
-
-        return view('users/users', $this->data);
+    public function index()
+    {
+        //
     }
 
     /**
@@ -24,32 +19,15 @@ class UsersController extends Controller
      */
     public function create()
     {
-        // $groups= Group::all();
-
-        $this->data['groups']= Group::arrayForSelect();
-
-        // foreach($groups as $group){
-
-        //     $this->data['groups'][$group->id] = $group->title;
-        // }
-
-        return view('users.create',$this->data);
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateUserRequest $request)
+    public function store(Request $request)
     {
-       $formData = $request->all();
-
-
-       if( User::create($formData)){
-
-         	session()->flash('message', 'User created successfully');
-
-        }
-        return redirect()->to('/users');
+        //
     }
 
     /**
