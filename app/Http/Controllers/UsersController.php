@@ -17,6 +17,7 @@ class UsersController extends Controller
         $this->data['users'] = User::all();
 
         return view('users/users', $this->data);
+
     }
 
     /**
@@ -27,13 +28,15 @@ class UsersController extends Controller
         // $groups= Group::all();
 
         $this->data['groups']= Group::arrayForSelect();
+        $this->data['mode'] = 'create';
+        $this->data['headline'] = 'Add New User';
 
         // foreach($groups as $group){
 
         //     $this->data['groups'][$group->id] = $group->title;
         // }
 
-        return view('users.create',$this->data);
+        return view('users.form',$this->data);
     }
 
     /**
@@ -63,12 +66,21 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        
+        $this->data['user'] = User::findOrFail($id);
+         $this->data['groups']= Group::arrayForSelect();
+         $this->data['mode'] = 'edit';
+         $this->data['headline'] = 'Update Information';
+
+        return view('users.form', $this->data);
     }
 
+
+
     /**
+     *
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)

@@ -3,7 +3,7 @@
 @section('main_content')
 
 
-    <h2>Add New Users</h2>
+    <h2>{{ $headline }}</h2>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -16,13 +16,18 @@
     @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">New Users</h4>
-
+            <h4 class="m-0  text-primary">{{ $headline }}</h4>
         </div>
         <div class="card-body">
             <div class="col-md-8 mx-auto ">
+                {{-- isset($user) --}}
+                @if ($mode == 'edit')
+                    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'post']) !!}
+                @else
+                    {!! Form::open(['route' => 'users.store', 'method' => 'post']) !!}
+                @endif
 
-                {!! Form::open(['route' => 'users.store', 'method' => 'post']) !!}
+
                 <div class="form-group row">
                     <label for="group_id" class="col-sm-2 col-form-label">User Group <span class="text-danger">*</span></label>
                     <div class="col-sm-10">
