@@ -22,7 +22,7 @@
             <div class="col-md-8 mx-auto ">
                 {{-- isset($user) --}}
                 @if ($mode == 'edit')
-                    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'post']) !!}
+                    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
                 @else
                     {!! Form::open(['route' => 'users.store', 'method' => 'post']) !!}
                 @endif

@@ -28,7 +28,7 @@ Route::post('groups',[UserGroupsController::class, 'store']);
 Route::delete('groups/{id}',[UserGroupsController::class, 'destroy']);
 
 
-Route::resource('users', UsersController::class, ['except' => ['show'] ]);
+Route::resource('users', UsersController::class);
 
 
 

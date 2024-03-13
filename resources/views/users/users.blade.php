@@ -56,10 +56,14 @@
                                 <td>{{ $user->address }}</td>
                                 <td class="text-right">
 
-                                    <form method="POST" action=" {{ url('users/' . $user->id) }} ">
+                                    <form method="POST" action=" {{ route('users.destroy', ['user' => $user->id]) }} ">
+                                        <a class="btn-sm btn-primary"
+                                            href="{{ route('users.show', ['user' => $user->id]) }}"><i
+                                                class="fa fa-eye"></i></a>
                                         <a class="btn-sm btn-primary"
                                             href="{{ route('users.edit', ['user' => $user->id]) }}"><i
                                                 class="fa fa-edit"></i></a>
+
                                         @csrf
                                         @method('DELETE')
                                         <button onclick="return confirm('Are you sure?')" type="submit"
