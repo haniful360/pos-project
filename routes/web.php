@@ -1,9 +1,9 @@
 <?php
 
-
-use App\Http\Controllers\UserGroupsController;
-use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\UserGroupsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,7 @@ Route::delete('groups/{id}',[UserGroupsController::class, 'destroy']);
 
 
 Route::resource('users', UsersController::class);
+Route::resource('categories', CategoriesController::class, ['except' =>['show']]);
 
 
 

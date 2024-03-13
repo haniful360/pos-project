@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
 {
@@ -11,7 +13,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $this->data['categories'] = Category::all();
+
+        return view('category.categories', $this->data);
     }
 
     /**
@@ -19,23 +23,33 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $this->data['headline'] = 'Add new Category';
+        $this->data['mode'] = 'crete';
+
+        return view('category.form', $this->data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        // return $request->all();
+        $formData = $request->all();
+
+        if(Category::create($formData)){
+            session()->flash('message', 'Category Added Successfully');
+
+        }
+        return redirect()->to('categories');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show( $id)
     {
-        //
+        
     }
 
     /**
