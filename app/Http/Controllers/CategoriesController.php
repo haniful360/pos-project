@@ -38,7 +38,7 @@ class CategoriesController extends Controller
         $formData = $request->all();
 
         if(Category::create($formData)){
-            session()->flash('message', 'Category Added Successfully');
+            session()->flash('message', $formData['title'] .' Added Successfully');
 
         }
         return redirect()->to('categories');
@@ -47,32 +47,45 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
-    {
-        
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $this->data['category'] = Category::findOrFail($id);
+        $this->data['mode'] = 'edit';
+        $this->data['headline'] = 'Update Category';
+
+        return view('category.form', $this->data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $category = Category::find($id);
+        $category->title = $data['title'];
+        // $category->title = $request['title'];
+
+        if($category->save()){
+            session()->flash('message', 'Category update successfully');
+        }
+
+        return redirect()->to('categories');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy( $id)
     {
-        //
+        if(Category::find($id)->delete()){
+
+            session()->flash('message', 'Category  Delete Successfully');
+        }
+
+        return redirect()->to('categories');
     }
 }
