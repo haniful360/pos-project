@@ -13,9 +13,10 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $this->data['categories'] = Category::all();
+        // $this->data['categories'] = Category::all();
+        $categories = Category::all();
 
-        return view('category.categories', $this->data);
+        return view('category.categories',compact('categories'));
     }
 
     /**

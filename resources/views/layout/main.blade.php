@@ -89,8 +89,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="collapse-item" href="">Product</a>
-                        <a class="collapse-item" href="">Categories</a>
+                        <a class="collapse-item" href="{{ url('categories') }}">Categories</a>
+                        <a class="collapse-item" href="{{ url('products') }}">Products</a>
 
                     </div>
                 </div>
@@ -360,7 +360,7 @@
 
                     @if (session('message'))
                         <div class="alert alert-primary" role="alert">
-                        {{ session('message') }}
+                            {{ session('message') }}
                         </div>
                     @endif
 

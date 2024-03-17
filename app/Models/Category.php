@@ -11,4 +11,23 @@ class Category extends Model
 
     protected $fillable =['title'];
 
+    public function products(){
+
+        return $this->hasMany(Product::class);
+    }
+
+    public static function arrayForSelect() {
+        $arr =[];
+
+        $products = Category::all();
+
+        foreach($products as $product){
+
+            $arr[$product->id] = $product->title;
+        }
+
+        return $arr;
+
+    }
+
 }

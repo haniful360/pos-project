@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $this->data['products'] = Product::all();
+
+        return view('products.products', $this->data);
     }
 
     /**
@@ -19,7 +23,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $this->data['categories'] = Category::arrayForSelect();
+        $this->data['mode'] = 'create';
+        $this->data['headline'] = 'Add new Product';
+        return view('products.form', $this->data);
     }
 
     /**
@@ -27,15 +34,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $this->data['product'] = Product::find($id);
+
+        return view('products.show', $this->data);
     }
 
     /**
