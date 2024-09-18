@@ -65,9 +65,6 @@ class UsersController extends Controller
 
         return view('users.show', $this->data);
 
-
-
-
     }
 
     /**
@@ -76,7 +73,7 @@ class UsersController extends Controller
     public function edit($id)
     {
 
-        $this->data['user'] = User::findOrFail($id);
+         $this->data['user'] = User::findOrFail($id);
          $this->data['groups']= Group::arrayForSelect();
          $this->data['mode'] = 'edit';
          $this->data['headline'] = 'Update Information';
@@ -93,7 +90,6 @@ class UsersController extends Controller
     public function update(UpdateUserRequest $request, string $id)
     {
         $data = $request->all();
-
         $user = User::find($id);
         $user->group_id = $data['group_id'];
         $user->name = $data['name'];

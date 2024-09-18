@@ -23,7 +23,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $this->data['categories'] = Category::arrayForSelect();
+        $this->data['categories'] = Category::all();
         $this->data['mode'] = 'create';
         $this->data['headline'] = 'Add new Product';
         return view('products.form', $this->data);
