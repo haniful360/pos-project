@@ -12,6 +12,7 @@ class Group extends Model
     protected $fillable = ['title'];
 
     public static function arrayForSelect() {
+        
         $arr =[];
 
         $groups = Group::all();
